@@ -38,9 +38,6 @@ public class CatsTracker : MonoBehaviour
             Vector3 worldPos = tile.transform.position + Vector3.up * 0.5f;
             GameObject newCat = Instantiate(catPrefab, worldPos, Quaternion.identity);
 
-            // Mark tile occupied
-            tile.SetOccupied(true);
-
             spawnedCats.Add(newCat);
             
             spawned++;

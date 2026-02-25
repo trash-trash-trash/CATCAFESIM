@@ -4,16 +4,40 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class Cat : MonoBehaviour
+public struct CatInfo
 {
     public string catName;
+    public int age;
+    public Sprite catSprite;
+    public GenderInfo genderInfo;
+    
+    
+    public const string FemaleSymbol = "♀";
+    public const string MaleSymbol = "♂";
+    
+    public string GetGenderString(GenderType genderType)
+    {
+        return genderType == GenderType.Male ? FemaleSymbol : MaleSymbol;
+    }
+}
+
+public class Cat : MonoBehaviour, IOccupy
+{
+    public Transform ReturnSelf => transform;
+    
+    public CatInfo catInfo;
+    public GenderComponent genderComp;
+    
+    //hack placeholder
+    public Sprite myCatSprite;
+    
+    public CatNamer catNamer;
     
     public float wanderRadius = 15f;
     public float minWaitTime = 4f;
     public float maxWaitTime = 16f;
 
     public NavMeshAgent agent;
-    public CatNamer catNamer;
 
     public event Action<string> AnnounceCatName;
 
@@ -26,10 +50,20 @@ public class Cat : MonoBehaviour
         catNamer = FindObjectOfType<CatNamer>();
     }
 
+    //grid should name cat, cats shouldnt name themselves
     void Start()
     {
-        catName = catNamer.GetRandomUnusedName();
-        AnnounceCatName?.Invoke(catName);
+        string newCatName = catNamer.GetRandomUnusedName();
+
+        catInfo = new CatInfo()
+        {
+            catName = newCatName,
+            age = 1,
+            catSprite = myCatSprite,
+            genderInfo = genderComp.GetGenderInfo()
+        };
+        
+        AnnounceCatName?.Invoke(newCatName);
     }
 
 
@@ -88,4 +122,5 @@ public class Cat : MonoBehaviour
     {
         StopAllCoroutines();
     }
+
 }

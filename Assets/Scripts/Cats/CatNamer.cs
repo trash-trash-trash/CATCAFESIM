@@ -6,24 +6,49 @@ public class CatNamer : MonoBehaviour
     public List<string> allCatNames = new List<string>()
     {
         "Ace",
+        "Anarchy",
+        "Bandit",
+        "Cookie",
+        "Bev",
+        "Eric",
+        "Exodus",
         "David",
         "Eevee",
         "Fat Fuck",
+        "Fizz",
         "Garfield",
+        "Greedy",
+        "Guap",
+        "Honey",
+        "Joe Friday",
         "Kat",
         "Katrina",
+        "Larry",
+        "Mash",
+        "Mephistopheles",
         "Moo Moo",
+        "Mayhem",
+        "Mucus",
         "Mr White",
         "Peanut",
+        "Percocet",
         "Poonut",
         "Poonutto",
         "Pixie",
         "Pickle",
         "Pickles",
+        "Pistachio",
+        "Piss",
+        "Rebel",
+        "Refreshing Beverage",
+        "Renfield",
         "Shadow",
         "Selina",
         "Selina Kyle",
+        "Spud",
         "T.C.",
+        "Terminator 2: Judgement Day",
+        "T2",
         "Top Cat",
         "Tiger",
         "Tigger",
@@ -47,7 +72,7 @@ public class CatNamer : MonoBehaviour
         unusedCatNames.Clear();
         usedCatNames.Clear();
 
-        // Copy all names into unused
+        // copy all names into unused
         unusedCatNames.AddRange(allCatNames);
     }
 

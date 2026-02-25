@@ -1,0 +1,3 @@
+player can only pick up + carry one cat at a time
+	- unlock scruff
+	- unlock dual scruff
