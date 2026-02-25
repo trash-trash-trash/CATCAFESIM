@@ -15,7 +15,7 @@ public class CatsTracker : MonoBehaviour
         gridManager.AnnounceFloorBuilt += SpawnCats;
     }
 
-    private void SpawnCats()
+    public void SpawnCats()
     {
         int spawned = 0;
         int safety = 0; // prevents infinite loop

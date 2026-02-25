@@ -1,21 +1,35 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Cat : MonoBehaviour
 {
+    public string catName;
+    
     public float wanderRadius = 15f;
     public float minWaitTime = 4f;
     public float maxWaitTime = 16f;
 
     public NavMeshAgent agent;
+    public CatNamer catNamer;
 
-    private void OnEnable()
+    public event Action<string> AnnounceCatName;
+
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
 
         SnapToNavMesh();
         StartCoroutine(WanderRoutine());
+        catNamer = FindObjectOfType<CatNamer>();
+    }
+
+    void Start()
+    {
+        catName = catNamer.GetRandomUnusedName();
+        AnnounceCatName?.Invoke(catName);
     }
 
 
