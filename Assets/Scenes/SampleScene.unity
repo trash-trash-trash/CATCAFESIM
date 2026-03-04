@@ -193,59 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9be5dff0d7d42c40bc653433d6bd4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatNamer
-  allCatNames:
-  - Ace
-  - Anarchy
-  - Bandit
-  - Cookie
-  - Bev
-  - Eric
-  - Exodus
-  - David
-  - Eevee
-  - Fat Fuck
-  - Fizz
-  - Garfield
-  - Greedy
-  - Guap
-  - Honey
-  - Joe Friday
-  - Kat
-  - Katrina
-  - Larry
-  - Mash
-  - Mephistopheles
-  - Moo Moo
-  - Mayhem
-  - Mucus
-  - Mr White
-  - Peanut
-  - Percocet
-  - Poonut
-  - Poonutto
-  - Pixie
-  - Pickle
-  - Pickles
-  - Pistachio
-  - Piss
-  - Rebel
-  - Refreshing Beverage
-  - Renfield
-  - Shadow
-  - Selina
-  - Selina Kyle
-  - Spud
-  - T.C.
-  - 'Terminator 2: Judgement Day'
-  - T2
-  - Top Cat
-  - Tiger
-  - Tigger
-  - Tony
-  - Tony S.
-  - Snowball
-  - Snowy
-  - Yogi
+  allCatNames: []
   unusedCatNames: []
   usedCatNames: []
 --- !u!1 &245263567
@@ -583,6 +531,10 @@ MonoBehaviour:
   catProfileObj: {fileID: 1436778729}
   catInfoText: {fileID: 1680945549}
   catImage: {fileID: 1751313338}
+  gridParentObj: {fileID: 1537302687}
+  catStatPrefabObj: {fileID: 453191757}
+  spawnedStatObjects: []
+  currentlyShownCat: {fileID: 0}
 --- !u!114 &358517290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,7 +760,7 @@ GameObject:
   - component: {fileID: 451801261}
   - component: {fileID: 451801262}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,13 +847,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453191758}
+  - component: {fileID: 453191759}
   m_Layer: 5
   m_Name: CatsStatsObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &453191758
 RectTransform:
   m_ObjectHideFlags: 0
@@ -915,15 +868,94 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 407726701}
-  - {fileID: 451801261}
   - {fileID: 1134776954}
+  - {fileID: 451801261}
   m_Father: {fileID: 1537302688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 25, y: -50}
+  m_SizeDelta: {x: 50, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &453191759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453191757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b86aba2a8fe2d247b0ec33f900fcee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatStatCanvasObject
+  statNameText: {fileID: 1134776955}
+  statSlider: {fileID: 451801262}
+--- !u!1 &561137391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561137393}
+  - component: {fileID: 561137392}
+  - component: {fileID: 561137394}
+  m_Layer: 0
+  m_Name: ScenarioTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &561137392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561137391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Anthill.AI.AntAIAgent
+  manualUpdate: 0
+  thinkInterval: 0.1
+  scenario: {fileID: 11400000, guid: 3518ae3b46f1f58439bd8a120a7cdf93, type: 2}
+--- !u!4 &561137393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561137391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 463.3444, y: 177.68193, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561137394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561137391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04beb79c4138eae45b0f9bfa144f3f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatSensor
+  idle: 0
+  hungryNoFoodDetected: 0
+  hungryFoodDetected: 0
+  hungryInFoodRange: 0
+  eating: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8.328571}
+  m_AnchoredPosition: {x: -50.476192, y: -8.328571}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1537302689
@@ -1632,9 +1664,9 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: -50}
-  m_Constraint: 0
+  m_CellSize: {x: 50, y: 100}
+  m_Spacing: {x: 120, y: -50}
+  m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!1 &1559875488
 GameObject:
@@ -2148,3 +2180,4 @@ SceneRoots:
   - {fileID: 253235432}
   - {fileID: 358517288}
   - {fileID: 139344035}
+  - {fileID: 561137393}

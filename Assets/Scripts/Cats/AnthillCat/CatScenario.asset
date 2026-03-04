@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: CatScenario
+  m_EditorClassIdentifier: Assembly-CSharp::Anthill.AI.AntAIScenario
+  conditions:
+    list:
+    - id: 0
+      name: FoodDetected
+    - id: 1
+      name: InRange
+    - id: 2
+      name: Eating
+    - id: 3
+      name: Hungry
+  actions:
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 3161525833454532588, guid: 24b8a3b97c8a5424e8a8ad414a070ca2, type: 3}
+    cost: 0
+    position: {x: 224.68393, y: 53.160187}
+    pre:
+    - id: 3
+      value: 0
+    post: []
+  - name: LookForFood
+    isDefault: 0
+    state: {fileID: 6833218839429657338, guid: 6bff6a4e359699b4c932904a6a377e92, type: 3}
+    cost: 0
+    position: {x: 210.34473, y: 326.8599}
+    pre:
+    - id: 3
+      value: 1
+    post:
+    - id: 0
+      value: 1
+  - name: PathToFood
+    isDefault: 0
+    state: {fileID: 2841254081032452050, guid: d5b851119d20911468c0b166307fd076, type: 3}
+    cost: 0
+    position: {x: 434.79236, y: 334.13904}
+    pre:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 0
+    - id: 3
+      value: 1
+    post:
+    - id: 1
+      value: 1
+  - name: Eating
+    isDefault: 0
+    state: {fileID: 6417274011843006117, guid: a0231cd9b5d0e0642983eece6e671729, type: 3}
+    cost: 0
+    position: {x: 811.22974, y: 299.9366}
+    pre:
+    - id: 1
+      value: 1
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+    - id: 3
+      value: 1
+    post:
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0
+  goals:
+  - name: Fed
+    isDefault: 1
+    position: {x: 1178.8425, y: 329.21954}
+    conditions:
+    - id: 3
+      value: 0
+    - id: 2
+      value: 0
+  worldStates:
+  - position: {x: 538.4155, y: 48.606064}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0

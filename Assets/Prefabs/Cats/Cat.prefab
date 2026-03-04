@@ -227,6 +227,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8237772910729702646}
   - component: {fileID: 7160920774363256160}
+  - component: {fileID: 7788471539184955712}
+  - component: {fileID: 5295149852187685161}
   - component: {fileID: 3200275152631749456}
   - component: {fileID: 294724449195587049}
   - component: {fileID: 1346228032740314875}
@@ -273,6 +275,52 @@ MonoBehaviour:
   minWaitTime: 0.5
   maxWaitTime: 4
   agent: {fileID: 0}
+--- !u!114 &7788471539184955712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472913807066931897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a3e7c5f8d528b49bd9126fc7fb3faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatStatsTracker
+  stats:
+  - statType: 0
+    currentValue: 100
+    revealedToPlayer: 0
+  - statType: 1
+    currentValue: 100
+    revealedToPlayer: 0
+  - statType: 2
+    currentValue: 100
+    revealedToPlayer: 0
+  - statType: 3
+    currentValue: 100
+    revealedToPlayer: 0
+  - statType: 4
+    currentValue: 100
+    revealedToPlayer: 0
+  - statType: 5
+    currentValue: 100
+    revealedToPlayer: 0
+--- !u!114 &5295149852187685161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472913807066931897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd35b53cfc81d5d47aa1b7b5770f031a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatHunger
+  baseHungerPerSecond: 1
+  metabolism: 1
+  stats: {fileID: 7788471539184955712}
 --- !u!114 &3200275152631749456
 MonoBehaviour:
   m_ObjectHideFlags: 0

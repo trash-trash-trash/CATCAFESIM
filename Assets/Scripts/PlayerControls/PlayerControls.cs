@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour
     public event Action<bool> AnnounceEscapeHit;
     public event Action<bool> AnnounceLeftClick;
     public event Action<bool> AnnounceRightClick;
-    
+
     void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -22,22 +22,22 @@ public class PlayerControls : MonoBehaviour
 
         inputActions.InGameActionMap.RightClick.performed += RightClickInput;
         inputActions.InGameActionMap.RightClick.canceled += RightClickInput;
-        
+
         inputActions.Enable();
     }
 
     private void EscapeInput(InputAction.CallbackContext obj)
     {
-        if(obj.performed)
+        if (obj.performed)
             AnnounceEscapeHit?.Invoke(true);
         else
             AnnounceEscapeHit?.Invoke(false);
     }
-    
+
 
     private void LeftClickInput(InputAction.CallbackContext obj)
     {
-        if(obj.performed)
+        if (obj.performed)
             AnnounceLeftClick?.Invoke(true);
         else
             AnnounceLeftClick?.Invoke(false);
@@ -45,7 +45,7 @@ public class PlayerControls : MonoBehaviour
 
     private void RightClickInput(InputAction.CallbackContext obj)
     {
-        if(obj.performed)
+        if (obj.performed)
             AnnounceRightClick?.Invoke(true);
         else
             AnnounceRightClick?.Invoke(false);

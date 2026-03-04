@@ -2,9 +2,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class TileSelector : MonoBehaviour, IOccupy
 {
+    //lots of model + view mixing in this one, refactor
     public Transform ReturnSelf => transform;
 
     public LayerMask raycastLayers;
@@ -18,6 +20,12 @@ public class TileSelector : MonoBehaviour, IOccupy
     public GameObject catProfileObj;
     public TMP_Text catInfoText;
     public Image catImage;
+
+    public GameObject gridParentObj;
+    public GameObject catStatPrefabObj;
+    
+    [SerializeField] private List<GameObject> spawnedStatObjects = new List<GameObject>();
+    public Cat currentlyShownCat;
 
     public void ToggleEnabled(bool newEnabled)
     {
@@ -93,12 +101,30 @@ public class TileSelector : MonoBehaviour, IOccupy
 
         Cat cat = catTile.currentOccupee.ReturnSelf.GetComponent<Cat>();
         if (cat == null) return;
+        
+        ClearStatUI();
 
         CatInfo catInfo = cat.catInfo;
         string genderSymbol = catInfo.GetGenderString(catInfo.genderInfo.catGender);
 
         catInfoText.text = $"{catInfo.catName}\n{catInfo.age}\n{genderSymbol}\n{catInfo.genderInfo.catSex}";
         catImage.sprite = catInfo.catSprite;
+
+        List<CatStat> catStats = cat.GetComponent<CatStatsTracker>().stats;
+
+        foreach (CatStat catStat in catStats)
+        {
+            GameObject newStat = Instantiate(catStatPrefabObj, gridParentObj.transform);
+
+            CatStatCanvasObject statUI =
+                newStat.GetComponent<CatStatCanvasObject>();
+
+            statUI.Bind(catStat);
+            spawnedStatObjects.Add(newStat);
+            
+            newStat.SetActive(true);
+        }
+        
         catProfileObj.SetActive(true);
     }
 
@@ -109,5 +135,13 @@ public class TileSelector : MonoBehaviour, IOccupy
             currentTile.SetOccupied(null, OccupiedType.Empty, false);
             currentTile = null;
         }
+    }
+    
+    private void ClearStatUI()
+    {
+        foreach (var obj in spawnedStatObjects)
+            Destroy(obj);
+
+        spawnedStatObjects.Clear();
     }
 }
